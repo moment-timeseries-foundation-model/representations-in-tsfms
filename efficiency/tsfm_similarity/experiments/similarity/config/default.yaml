@@ -1,0 +1,69 @@
+# Data generation settings
+data_generation:
+  type: "synthetic"  # Options: synthetic, random, anomaly_detection, classification, forecasting
+  random_seed: 42
+  
+  synthetic:
+    n_samples: 10
+    seq_len: 512
+    n_channels: 1
+    freq: 1
+    freq_range: [1, 32]
+    noise_mean: 0.0
+    noise_std: 0.1
+
+  random:
+    n_samples: 1024
+    seq_len: 512
+    n_channels: 1
+    distribution: "normal"  # Options: normal, uniform
+    mean: 0  # For normal distribution
+    std: 1   # For normal distribution
+    low: 0   # For uniform distribution
+    high: 1  # For uniform distribution
+
+  # Anomaly detection parameters
+  anomaly_detection:
+    data_split: "train"
+    data_stride_len: 512
+
+  # Classification parameters
+  classification:
+    data_split: "train"
+
+  # Forecasting parameters
+  forecasting:
+    forecast_horizon: 192
+    data_split: "train"
+    data_stride_len: 1
+
+# File paths
+cache: "cache/representations/random_univariate"
+results: "results/similarity/random_univariate"
+
+similarity: "cka" # Options: cka, cca, cosine
+
+# Model configurations
+models:
+  MOMENT:
+    - "AutonLab/MOMENT-1-large"
+  Chronos:
+    - "amazon/chronos-t5-tiny"
+    - "amazon/chronos-t5-mini"
+    - "amazon/chronos-t5-small"
+    - "amazon/chronos-t5-base"
+    - "amazon/chronos-t5-large"
+  Moirai:
+    - "Salesforce/moirai-1.1-R-small"
+    - "Salesforce/moirai-1.1-R-base"
+    - "Salesforce/moirai-1.1-R-large"
+    - "Salesforce/moirai-1.0-R-small"
+    - "Salesforce/moirai-1.0-R-base"
+    - "Salesforce/moirai-1.0-R-large"
+
+# Model-specific configurations
+model_configs:
+  MOMENT:
+    task_name: "embedding"
+  Chronos: {}
+  Moirai: {}

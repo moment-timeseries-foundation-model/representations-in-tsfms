@@ -1,0 +1,43 @@
+# Data generation settings
+data_generation:
+  type: "synthetic"  # Options: synthetic, random, anomaly_detection, classification, forecasting
+  random_seed: 42
+  synthetic:
+    n_samples: 256
+    seq_len: 512
+    n_channels: 4
+    freq: 1
+    freq_range: [1, 32]
+    noise_mean: 0.0
+    noise_std: 0.1
+
+# File paths
+cache: "cache/representations/synthetic_multivariate"
+results: "results/similarity/synthetic_multivariate"
+
+similarity: "cka" # Options: cka, cca, cosine
+
+# Model configurations
+models:
+  MOMENT:
+    - "AutonLab/MOMENT-1-large"
+  Chronos:
+    - "amazon/chronos-t5-tiny"
+    - "amazon/chronos-t5-mini"
+    - "amazon/chronos-t5-small"
+    - "amazon/chronos-t5-base"
+    - "amazon/chronos-t5-large"
+  Moirai:
+    - "Salesforce/moirai-1.1-R-small"
+    - "Salesforce/moirai-1.1-R-base"
+    - "Salesforce/moirai-1.1-R-large"
+    - "Salesforce/moirai-1.0-R-small"
+    - "Salesforce/moirai-1.0-R-base"
+    - "Salesforce/moirai-1.0-R-large"
+
+# Model-specific configurations
+model_configs:
+  MOMENT:
+    task_name: "embedding"
+  Chronos: {}
+  Moirai: {}
