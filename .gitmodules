@@ -1,3 +1,3 @@
-[submodule "efficiency/efficiency/chronos-forecasting"]
-	path = efficiency/efficiency/chronos-forecasting
+[submodule "efficiency/chronos-forecasting"]
+	path = efficiency/chronos-forecasting
 	url = git@github.com:amazon-science/chronos-forecasting.git
