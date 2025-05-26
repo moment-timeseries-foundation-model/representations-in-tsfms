@@ -188,4 +188,3 @@ cython_debug/
 .cursorindexingignore
 efficiency/results/
 efficiency/cache/
-steering
