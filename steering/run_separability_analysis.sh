@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Create results directory for separability analysis
 mkdir -p results/separability_analysis
 
-# Set common parameters
 MODEL="moment"
 SAMPLES=20
 DEVICE="cuda"
@@ -13,7 +11,6 @@ echo "==========================================================================
 echo "Running Separability Analysis for Time Series Patterns"
 echo "======================================================================================"
 
-# 1. Separability of constant vs. sinusoidal patterns (Pattern classification)
 echo "Running analysis: Constant vs. Sinusoidal"
 python -m steering.steertool.cli analyze \
     --dataset1 datasets/none_constant.parquet \
@@ -24,7 +21,6 @@ python -m steering.steertool.cli analyze \
     --output-dir $RESULTS_DIR/constant_vs_sine \
     --device $DEVICE
 
-# 2. Separability of increasing vs. decreasing trends
 echo "Running analysis: Increasing vs. Decreasing Trends"
 python -m steering.steertool.cli analyze \
     --dataset1 datasets/none_increasing.parquet \
@@ -35,7 +31,6 @@ python -m steering.steertool.cli analyze \
     --output-dir $RESULTS_DIR/increasing_vs_decreasing \
     --device $DEVICE
 
-# 3. Separability of high vs. low periodicity
 echo "Running analysis: High vs. Low Periodicity"
 python -m steering.steertool.cli analyze \
     --dataset1 datasets/sine_freq_high.parquet \
@@ -46,7 +41,6 @@ python -m steering.steertool.cli analyze \
     --output-dir $RESULTS_DIR/high_vs_low_frequency \
     --device $DEVICE
 
-# 4. Additional analysis: Constant vs. Trend (Increasing)
 echo "Running analysis: Constant vs. Trend (Increasing)"
 python -m steering.steertool.cli analyze \
     --dataset1 datasets/none_constant.parquet \
@@ -57,7 +51,6 @@ python -m steering.steertool.cli analyze \
     --output-dir $RESULTS_DIR/constant_vs_trend_increasing \
     --device $DEVICE
 
-# 5. Additional analysis: Constant vs. Trend (Decreasing)
 echo "Running analysis: Constant vs. Trend (Decreasing)"
 python -m steering.steertool.cli analyze \
     --dataset1 datasets/none_constant.parquet \
@@ -68,7 +61,6 @@ python -m steering.steertool.cli analyze \
     --output-dir $RESULTS_DIR/constant_vs_trend_decreasing \
     --device $DEVICE
 
-# 6. Additional analysis: Sinusoidal vs. Trend (Increasing)
 echo "Running analysis: Sinusoidal vs. Trend (Increasing)"
 python -m steering.steertool.cli analyze \
     --dataset1 datasets/sine_constant.parquet \
@@ -79,7 +71,6 @@ python -m steering.steertool.cli analyze \
     --output-dir $RESULTS_DIR/sine_vs_trend_increasing \
     --device $DEVICE
 
-# 7. Additional analysis: Sinusoidal vs. Trend (Decreasing)
 echo "Running analysis: Sinusoidal vs. Trend (Decreasing)"
 python -m steering.steertool.cli analyze \
     --dataset1 datasets/sine_constant.parquet \
@@ -90,7 +81,6 @@ python -m steering.steertool.cli analyze \
     --output-dir $RESULTS_DIR/sine_vs_trend_decreasing \
     --device $DEVICE
 
-# 8. Additional analysis: High vs. Low Amplitude (Sine)
 echo "Running analysis: High vs. Low Amplitude (Sine)"
 python -m steering.steertool.cli analyze \
     --dataset1 datasets/sine_amp_high.parquet \
@@ -105,7 +95,6 @@ echo "==========================================================================
 echo "Separability analysis complete. Results are saved in $RESULTS_DIR"
 echo "======================================================================================"
 
-# Print summary of generated results
 echo "Generated visualizations:"
 for dir in $RESULTS_DIR/*; do
     count=$(find "$dir" -name "*.pdf" | wc -l)
