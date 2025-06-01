@@ -50,7 +50,7 @@ def plot_linear_separability(
     linear_separability,
     linear_separability_mean,
     no_layers,
-    title="Linear Separability Heatmap",
+    fontsize=40,
     output_file="linear_separability_heatmap.pdf",
 ):
     """
@@ -72,33 +72,50 @@ def plot_linear_separability(
 
     fig.subplots_adjust(right=0.85, top=0.92, bottom=0.1, left=0.1)
 
-    cbar_ax = fig.add_axes([1.07, 0.18, 0.03, 0.65])
-    sns.heatmap(
+    cbar_ax = fig.add_axes([1.0, 0.2, 0.05, 0.7])
+    heatmap = sns.heatmap(
         linear_separability.T, cmap="viridis", ax=ax1, cbar=True, cbar_ax=cbar_ax
     )
+    cbar_ax.tick_params(labelsize=fontsize)
 
-    ax1.set_xlabel("Layer", fontsize=22, labelpad=20)
-    ax1.set_ylabel("Patch", fontsize=22, labelpad=20)
-
-    ax1.set_title(title, fontsize=24, pad=30)
-
-    ax2 = ax1.twinx()
+    ax1.set_xlabel("Model Depth", fontsize=fontsize, labelpad=20)
+    ax1.set_ylabel("Patch Position", fontsize=fontsize, labelpad=20)
+    ax1.tick_params(axis="y", labelsize=fontsize-2, colors='black')
+    ax1.tick_params(axis="x", labelsize=fontsize-2, colors='black')
     
+    ax2 = ax1.twinx()
     ax2.plot(
         np.arange(no_layers),
         linear_separability_mean,
         color="red",
-        linewidth=2,
-        label="Mean Separability",
+        linewidth=3,
+        label="Scaled LDR",
     )
-
+    ax2.tick_params(axis="y", labelsize=fontsize-2, colors='red')
     ax2.set_xlim(0, no_layers - 1)
-    ax2.set_ylabel("Separability", fontsize=22, labelpad=20)
+    ax2.set_ylabel("Scaled LDR", fontsize=fontsize, labelpad=20, color='red')
+
+    heatmap.set_xticklabels(heatmap.get_xticklabels(), rotation=0)
+
+    xticklabels = ax1.get_xticklabels()
+    yticklabels = ax1.get_yticklabels()
+
+    xtick_positions = ax1.get_xticks()
+    new_xticklabels = [
+        label.get_text() if i % 4 == 0 else ''  # Keep every 2nd label
+        for i, label in enumerate(xticklabels)
+    ]
+    ax1.set_xticklabels(new_xticklabels, rotation=0)
+
+    ytick_positions = ax1.get_yticks()
+    new_yticklabels = [
+        label.get_text() if i % 4 == 0 else ''  # Keep every 2nd label
+        for i, label in enumerate(yticklabels)
+    ]
+    ax1.set_yticklabels(new_yticklabels, rotation=0)
 
     plt.tight_layout()
-
     plt.savefig(output_file, bbox_inches="tight")
-    plt.show()
     print(f"Plot saved as {output_file}")
 
 def visualize_embeddings_pca(

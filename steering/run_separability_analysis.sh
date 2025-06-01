@@ -12,9 +12,9 @@ echo "Running Separability Analysis for Time Series Patterns"
 echo "======================================================================================"
 
 echo "Running analysis: Constant vs. Sinusoidal"
-python -m steering.steertool.cli analyze \
-    --dataset1 datasets/none_constant.parquet \
-    --dataset2 datasets/sine_constant.parquet \
+python -m steertool.cli analyze \
+    --dataset1 ./datasets/none_constant.parquet \
+    --dataset2 ./datasets/sine_constant.parquet \
     --type constant-sine \
     --model $MODEL \
     --samples $SAMPLES \
@@ -22,9 +22,9 @@ python -m steering.steertool.cli analyze \
     --device $DEVICE
 
 echo "Running analysis: Increasing vs. Decreasing Trends"
-python -m steering.steertool.cli analyze \
-    --dataset1 datasets/none_increasing.parquet \
-    --dataset2 datasets/none_decreasing.parquet \
+python -m steertool.cli analyze \
+    --dataset1 ./datasets/none_increasing.parquet \
+    --dataset2 ./datasets/none_decreasing.parquet \
     --type trend \
     --model $MODEL \
     --samples $SAMPLES \
@@ -32,9 +32,9 @@ python -m steering.steertool.cli analyze \
     --device $DEVICE
 
 echo "Running analysis: High vs. Low Periodicity"
-python -m steering.steertool.cli analyze \
-    --dataset1 datasets/sine_freq_high.parquet \
-    --dataset2 datasets/sine_freq_low.parquet \
+python -m steertool.cli analyze \
+    --dataset1 ./datasets/sine_freq_high.parquet \
+    --dataset2 ./datasets/sine_freq_low.parquet \
     --type periodicity \
     --model $MODEL \
     --samples $SAMPLES \
@@ -42,9 +42,9 @@ python -m steering.steertool.cli analyze \
     --device $DEVICE
 
 echo "Running analysis: Constant vs. Trend (Increasing)"
-python -m steering.steertool.cli analyze \
-    --dataset1 datasets/none_constant.parquet \
-    --dataset2 datasets/none_increasing.parquet \
+python -m steertool.cli analyze \
+    --dataset1 ./datasets/none_constant.parquet \
+    --dataset2 ./datasets/none_increasing.parquet \
     --type constant-sine \
     --model $MODEL \
     --samples $SAMPLES \
@@ -52,9 +52,9 @@ python -m steering.steertool.cli analyze \
     --device $DEVICE
 
 echo "Running analysis: Constant vs. Trend (Decreasing)"
-python -m steering.steertool.cli analyze \
-    --dataset1 datasets/none_constant.parquet \
-    --dataset2 datasets/none_decreasing.parquet \
+python -m steertool.cli analyze \
+    --dataset1 ./datasets/none_constant.parquet \
+    --dataset2 ./datasets/none_decreasing.parquet \
     --type constant-sine \
     --model $MODEL \
     --samples $SAMPLES \
@@ -62,9 +62,9 @@ python -m steering.steertool.cli analyze \
     --device $DEVICE
 
 echo "Running analysis: Sinusoidal vs. Trend (Increasing)"
-python -m steering.steertool.cli analyze \
-    --dataset1 datasets/sine_constant.parquet \
-    --dataset2 datasets/sine_increasing.parquet \
+python -m steertool.cli analyze \
+    --dataset1 ./datasets/sine_constant.parquet \
+    --dataset2 ./datasets/sine_increasing.parquet \
     --type trend \
     --model $MODEL \
     --samples $SAMPLES \
@@ -72,9 +72,9 @@ python -m steering.steertool.cli analyze \
     --device $DEVICE
 
 echo "Running analysis: Sinusoidal vs. Trend (Decreasing)"
-python -m steering.steertool.cli analyze \
-    --dataset1 datasets/sine_constant.parquet \
-    --dataset2 datasets/sine_decreasing.parquet \
+python -m steertool.cli analyze \
+    --dataset1 ./datasets/sine_constant.parquet \
+    --dataset2 ./datasets/sine_decreasing.parquet \
     --type trend \
     --model $MODEL \
     --samples $SAMPLES \
@@ -82,9 +82,9 @@ python -m steering.steertool.cli analyze \
     --device $DEVICE
 
 echo "Running analysis: High vs. Low Amplitude (Sine)"
-python -m steering.steertool.cli analyze \
-    --dataset1 datasets/sine_amp_high.parquet \
-    --dataset2 datasets/sine_amp_low.parquet \
+python -m steertool.cli analyze \
+    --dataset1 ./datasets/sine_amp_high.parquet \
+    --dataset2 ./datasets/sine_amp_low.parquet \
     --type periodicity \
     --model $MODEL \
     --samples $SAMPLES \
