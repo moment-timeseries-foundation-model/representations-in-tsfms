@@ -1,0 +1,3 @@
+[submodule "efficiency/chronos-forecasting"]
+	path = efficiency/chronos-forecasting
+	url = git@github.com:amazon-science/chronos-forecasting.git

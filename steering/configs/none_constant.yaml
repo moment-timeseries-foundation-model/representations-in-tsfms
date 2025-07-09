@@ -1,0 +1,17 @@
+n_series: 512
+length: 512
+trend_types: ['none']
+seasonality_types: ['none']
+noise_types: ['none']
+trend_params:
+  slope: [0, 0]
+  intercept: [-30, 30]
+  growth_rate: [0, 0]
+seasonality_params:
+  amplitude: [50, 50]
+  period: [128, 128]
+noise_params:
+  mean: [0, 0]
+  stddev: [1, 1]
+  low: [0, 0]
+  high: [0, 0]
